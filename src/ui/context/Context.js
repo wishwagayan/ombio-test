@@ -7,7 +7,7 @@ const Axios = axios.create({
     baseURL: 'http://localhost/php-login-registration-api/',
 });
 
-class MyContextProvider extends Component{
+class ContextProvider extends Component{
     constructor(){
         super();
         this.isLoggedIn();
@@ -38,7 +38,7 @@ class MyContextProvider extends Component{
 
     registerUser = async (user) => {
 
-        const register = await Axios.post('register.php',{
+        const register = await Axios.post('signup.php',{
             name:user.name,
             email:user.email,
             password:user.password
@@ -51,7 +51,7 @@ class MyContextProvider extends Component{
     loginUser = async (user) => {
 
         // Sending the user Login request
-        const login = await Axios.post('login.php',{
+        const login = await Axios.post('signin.php',{
             email:user.email,
             password:user.password
         });
