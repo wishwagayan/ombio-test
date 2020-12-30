@@ -1,7 +1,7 @@
 import React from 'react';
 // Importing the Context Provider & Home Component
-import ContextProvider from './context/Context';
-import Home from './Components/Home'
+import ContextProvider from './ui/context/Context';
+import Home from './ui/Components/Home'
 
 function App() {
     return (
