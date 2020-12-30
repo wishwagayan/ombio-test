@@ -6,15 +6,13 @@
 
     			if($magic_quotes)
     			{
-                    $val = addslashes($val);
+                    $val = ($val);
     			}
     	return $val;
         }
-
-
 	function connectBase(){
 		try {
-		return  new PDO ('mysql:host=localhost;dbname=Clients', 'root', '+');
+		return  new PDO ('mysql:host=localhost;dbname=Exam', 'root', '+');
 		}
 		catch (PDOException $e) {
 			print "Error !: " . $e->getMessage() . "<br/>";
@@ -22,7 +20,5 @@
 }
     }
 
-
-
 ?>
-© 2020 GitHub, Inc.
+
