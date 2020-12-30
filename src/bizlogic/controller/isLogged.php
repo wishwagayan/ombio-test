@@ -3,8 +3,8 @@ header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Credentials:true");
 header('Content-type: application/json');
 session_start();
-require_once("../includes/fonctions.php");
-require_once("../modele/userManager.php");
+require_once("../includes/functions.php");
+require_once("../model/userManager.php");
 
 
     $json = file_get_contents('php://input');

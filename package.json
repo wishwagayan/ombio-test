@@ -12,10 +12,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "parcel ./public/index.html"
   },
   "eslintConfig": {
     "extends": [
@@ -36,6 +33,7 @@
     ]
   },
   "devDependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "parcel-bundler": "^1.12.4"
   }
 }

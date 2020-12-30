@@ -14,7 +14,6 @@ function Register(){
     }
     const [state,setState] = useState(initialState);
 
-    // On Submit the Registration Form
     const submitForm = async (event) => {
         event.preventDefault();
         const data = await registerUser(state.userInfo);
