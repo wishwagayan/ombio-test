@@ -1,33 +1,32 @@
-import React, {useContext,useState} from 'react'
+import React, {useContext, useState} from 'react'
 import {Context} from '../context/Context'
 
-function Register(){
-    const {toggleNav,registerUser} = useContext(Context);
+function Register() {
+    const {toggleNav, registerUser} = useContext(Context);
     const initialState = {
-        userInfo:{
-            name:'',
-            email:'',
-            password:'',
+        userInfo: {
+            name: '',
+            email: '',
+            password: '',
         },
-        errorMsg:'',
-        successMsg:'',
+        errorMsg: '',
+        successMsg: '',
     }
-    const [state,setState] = useState(initialState);
+    const [state, setState] = useState(initialState);
 
     const submitForm = async (event) => {
         event.preventDefault();
         const data = await registerUser(state.userInfo);
-        if(data.success){
+        if (data.success) {
             setState({
                 ...initialState,
-                successMsg:data.message,
+                successMsg: data.message,
             });
-        }
-        else{
+        } else {
             setState({
                 ...state,
-                successMsg:'',
-                errorMsg:data.message
+                successMsg: '',
+                errorMsg: data.message
             });
         }
     }
@@ -36,9 +35,9 @@ function Register(){
     const onChangeValue = (e) => {
         setState({
             ...state,
-            userInfo:{
+            userInfo: {
                 ...state.userInfo,
-                [e.target.name]:e.target.value
+                [e.target.name]: e.target.value
             }
         });
     }
@@ -46,28 +45,31 @@ function Register(){
     // Show Message on Success or Error
     let successMsg = '';
     let errorMsg = '';
-    if(state.errorMsg){
+    if (state.errorMsg) {
         errorMsg = <div className="error-msg">{state.errorMsg}</div>;
     }
-    if(state.successMsg){
+    if (state.successMsg) {
         successMsg = <div className="success-msg">{state.successMsg}</div>;
     }
 
-    return(
+    return (
         <div className="_loginRegister">
             <h1>Sign Up</h1>
             <form onSubmit={submitForm} noValidate>
                 <div className="form-control">
                     <label>Full Name</label>
-                    <input name="name" required type="text" value={state.userInfo.name} onChange={onChangeValue} placeholder="Enter your name"/>
+                    <input name="name" required type="text" value={state.userInfo.name} onChange={onChangeValue}
+                           placeholder="Enter your name"/>
                 </div>
                 <div className="form-control">
                     <label>Email</label>
-                    <input name="email" required type="email" value={state.userInfo.email} onChange={onChangeValue} placeholder="Enter your email"/>
+                    <input name="email" required type="email" value={state.userInfo.email} onChange={onChangeValue}
+                           placeholder="Enter your email"/>
                 </div>
                 <div className="form-control">
                     <label>Password</label>
-                    <input name="password" required type="password" value={state.userInfo.password} onChange={onChangeValue} placeholder="Enter your password"/>
+                    <input name="password" required type="password" value={state.userInfo.password}
+                           onChange={onChangeValue} placeholder="Enter your password"/>
                 </div>
                 {errorMsg}
                 {successMsg}
@@ -76,7 +78,7 @@ function Register(){
                 </div>
             </form>
             <div className="_navBtn">
-                <button  onClick={toggleNav}>Login</button>
+                <button onClick={toggleNav}>Login</button>
             </div>
         </div>
     );

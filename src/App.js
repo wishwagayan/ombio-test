@@ -4,11 +4,11 @@ import ContextProvider from './context/Context';
 import Home from './Components/Home'
 
 function App() {
-  return (
-      <ContextProvider>
-        <Home/>
-      </ContextProvider>
-  );
+    return (
+        <ContextProvider>
+            <Home/>
+        </ContextProvider>
+    );
 }
 
 export default App;

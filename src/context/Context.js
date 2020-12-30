@@ -1,5 +1,6 @@
-import React, { createContext,Component } from "react";
+import React, {Component, createContext} from "react";
 import axios from 'axios'
+
 export const Context = createContext();
 
 // Define the base URL
@@ -7,17 +8,17 @@ const Axios = axios.create({
     baseURL: 'http://localhost/php-login-registration-api/',
 });
 
-class ContextProvider extends Component{
-    constructor(){
-        super();
-        this.isLoggedIn();
-    }
-
+class ContextProvider extends Component {
     // Root State
     state = {
-        showLogin:true,
-        isAuth:false,
-        theUser:null,
+        showLogin: true,
+        isAuth: false,
+        theUser: null,
+    }
+
+    constructor() {
+        super();
+        this.isLoggedIn();
     }
 
     toggleNav = () => {
@@ -32,16 +33,16 @@ class ContextProvider extends Component{
         localStorage.removeItem('loginToken');
         this.setState({
             ...this.state,
-            isAuth:false
+            isAuth: false
         })
     }
 
     registerUser = async (user) => {
 
-        const register = await Axios.post('signup.php',{
-            name:user.name,
-            email:user.email,
-            password:user.password
+        const register = await Axios.post('signup.php', {
+            name: user.name,
+            email: user.email,
+            password: user.password
         });
 
         return register.data;
@@ -51,9 +52,9 @@ class ContextProvider extends Component{
     loginUser = async (user) => {
 
         // Sending the user Login request
-        const login = await Axios.post('signin.php',{
-            email:user.email,
-            password:user.password
+        const login = await Axios.post('signin.php', {
+            email: user.email,
+            password: user.password
         });
         return login.data;
     }
@@ -63,36 +64,36 @@ class ContextProvider extends Component{
         const loginToken = localStorage.getItem('loginToken');
 
         // If inside the local-storage has the JWT token
-        if(loginToken){
+        if (loginToken) {
 
             //Adding JWT token to axios default header
-            Axios.defaults.headers.common['Authorization'] = 'bearer '+loginToken;
+            Axios.defaults.headers.common['Authorization'] = 'bearer ' + loginToken;
 
             // Fetching the user information
             const {data} = await Axios.get('user-info.php');
 
             // If user information is successfully received
-            if(data.success && data.user){
+            if (data.success && data.user) {
                 this.setState({
                     ...this.state,
-                    isAuth:true,
-                    theUser:data.user
+                    isAuth: true,
+                    theUser: data.user
                 });
             }
 
         }
     }
 
-    render(){
+    render() {
         const contextValue = {
-            rootState:this.state,
-            toggleNav:this.toggleNav,
-            isLoggedIn:this.isLoggedIn,
-            registerUser:this.registerUser,
-            loginUser:this.loginUser,
-            logoutUser:this.logoutUser
+            rootState: this.state,
+            toggleNav: this.toggleNav,
+            isLoggedIn: this.isLoggedIn,
+            registerUser: this.registerUser,
+            loginUser: this.loginUser,
+            logoutUser: this.logoutUser
         }
-        return(
+        return (
             <Context.Provider value={contextValue}>
                 {this.props.children}
             </Context.Provider>

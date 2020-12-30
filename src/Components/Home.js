@@ -5,15 +5,14 @@ import {Context} from '../context/Context'
 import Login from './Login'
 import Register from './Register'
 
-function Home(){
+function Home() {
 
-    const {rootState,logoutUser} = useContext(Context);
-    const {isAuth,theUser,showLogin} = rootState;
+    const {rootState, logoutUser} = useContext(Context);
+    const {isAuth, theUser, showLogin} = rootState;
 
     // If user Logged in
-    if(isAuth)
-    {
-        return(
+    if (isAuth) {
+        return (
             <div className="userInfo">
                 <div className="_img"><span role="img" aria-label="User Image">👦</span></div>
                 <h1>{theUser.name}</h1>
@@ -21,11 +20,9 @@ function Home(){
                 <button onClick={logoutUser}>Logout</button>
             </div>
         )
-    }
-    else if(showLogin){
+    } else if (showLogin) {
         return <Login/>;
-    }
-    else{
+    } else {
         return <Register/>;
     }
 
